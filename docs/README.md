@@ -6,7 +6,7 @@ Maneja tus canales de referidos, publica y controla los chollos de tus tiendas o
 ![symfony](https://img.shields.io/badge/Symfony-4.0-green)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
-![Alt text](public/logo_transparent.png?raw=true "OfertoApp")
+![Alt text](../public/logo_transparent.png?raw=true "OfertoApp")
 
 ## Installation
 
