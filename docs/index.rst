@@ -42,12 +42,6 @@ Installation
   GOOGLE_CLIENT_SECRET=
   DATABASE_URL=mysql://user_ofertoapp:secure_password_here@127.0.0.1:3306/ofertoapp
 
-* Inside the project folder execute composer install.
-
-.. code:: bash
-
-  composer install --no-dev --optimize-autoloader
-
 * Go to the file /config/packages/doctrine.yaml and add the following parameters in the beginning
 .. code:: bash
 
@@ -58,6 +52,12 @@ Installation
       database_name: ofertoapp
       database_user: user_ofertoapp
       database_password: secure_password_here
+
+* Inside the project folder execute composer install.
+
+.. code:: bash
+
+  composer install --no-dev --optimize-autoloader
 
 * Update the schema with doctrine
 .. code:: bash
