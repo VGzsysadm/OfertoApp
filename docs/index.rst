@@ -38,6 +38,8 @@ Installation
 .. code:: bash
 
   APP_ENV=prod
+  GOOGLE_CLIENT_ID=
+  GOOGLE_CLIENT_SECRET=
   DATABASE_URL=mysql://user_ofertoapp:secure_password_here@127.0.0.1:3306/ofertoapp
 
 * Inside the project folder execute composer install.
