@@ -8,20 +8,23 @@ Maneja tus canales de referidos, publica y controla los chollos de tus tiendas o
 
 .. image:: https://raw.githubusercontent.com/VGzsysadm/OfertoApp/master/public/logo_transparent.png
 
-## Installation
+Requeriments
+------------
+.. code:: bash
 
-```bash
-pip install translation
-```
-
-## Usage
-
-```python
-from 
+  PHP 7.0 or higher
+  MySQL or PostgreSQL
+  Composer
 
 
-```
+Installation
+------------
+* Donwload the project from `Source Forge <https://sourceforge.net/projects/ofertoapp/files/>`_. or clone the project from github.
 
-## Documents
+* Inside the project folder execute composer install.
 
-You may find document [here](https://ofertoapp.readthedocs.io/en/latest/).
+.. code:: bash
+
+  composer install
+
+* Execute the script installation.php inside the project folder.
