@@ -94,7 +94,7 @@ Installation
         </Directory>
         ErrorLog /var/log/apache2/OfertoApp/project_error.log
         CustomLog /var/log/apache2/OfertoApp/project_access.log combined
-</VirtualHost>
+  </VirtualHost>
 
 * Clear the cache in the project directory for prod env
 .. code:: bash
