@@ -34,7 +34,7 @@ Installation
 ------------
 * Donwload the project from `Source Forge <https://sourceforge.net/projects/ofertoapp/files/>`_. or clone the project from github.
 
-* Modify the line DATABASE_URL & APP_ENV with your params for connect to the database inside the file .env.
+* Modify the line DATABASE_URL & APP_ENV and Google information with your data at the .env file.
 .. code:: bash
 
   APP_ENV=prod
