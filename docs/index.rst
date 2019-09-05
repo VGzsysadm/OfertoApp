@@ -72,7 +72,7 @@ Installation
 * Configure permissions, virtualhost and logs
 .. code:: bash
 
-  chown -R www-data /var/www/OfertoApp
+  chown -R www-data. /var/www/OfertoApp
   a2enmod rewrite
 
 * Enable default vhost for apache2 example:
@@ -104,3 +104,10 @@ Installation
 .. code:: bash
 
   APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+
+* In order to create the admin user, first access with your google account and insert the following SQL in the database
+.. code:: mysql
+
+  UPDATE user SET roles = 'a:1:{i:0;s:10:"ROLE_ADMIN";}' where id = 1;
+
+* Logout in the application and log in again.
