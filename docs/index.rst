@@ -51,12 +51,12 @@ Installation
 .. code:: bash
 
   parameters:
-     database_driver: pdo_mysql
-     database_host: 127.0.0.1
-     database_port: 3306
-     database_name: ofertoapp
-     database_user: user_ofertoapp
-     database_password: secure_password_here
+      database_driver: pdo_mysql
+      database_host: 127.0.0.1
+      database_port: 3306
+      database_name: ofertoapp
+      database_user: user_ofertoapp
+      database_password: secure_password_here
 
 * Update the schema with doctrine
 .. code:: bash
