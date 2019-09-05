@@ -1,0 +1,317 @@
+
+
+{% extends 'base.html.twig' %}
+{% block title %}Hello MainController!{% endblock %}
+{% block body %}
+<!-- header start-->
+<div id="main-navigator">
+   <nav>
+      <div class="nav-wrapper">
+         <a href="#!" class="brand-logo center">
+         <img src="{{ asset('uploads/photos/') }}{{ gconfig.logo }}" width="600" height="64" class="d-inline-block align-top responsive-img" alt="logo">
+         </a>
+         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+         {% if app.User == null %}
+            <ul class="right hide-on-med-and-down">
+            <li><a class="waves-effect waves-light btn modal-trigger" href="#login-modal">Login</a></li>
+            </ul>
+            {% else %}
+            <ul class="right hide-on-med-and-down">
+            <li><a class="waves-effect waves-light btn dropdown-trigger" href='#' data-target='profile'>{{app.user.fullname}}</a></li>
+            </ul>
+            <ul id='profile' class='dropdown-content'>
+            <li><a href="#!">My profile</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+            </ul>
+            {% endif %}
+      </div>
+   </nav>
+</div>
+<ul class="sidenav" id="mobile-demo">
+   <li><a href="">Compartir página</a></li>
+</ul>
+<!-- header end-->
+<!-- show products -->
+<div class="row">
+   {% for product in products %}
+   {% if product.finish == true %}
+    <div class="col s12 m4 l3">
+        <div class="card finish">
+          <div class="card-image">
+              <img src="{{ asset('uploads/photos/') }}{{ product.photo }}">
+              <h5 class="card-title box">chollo finalizado</h5>
+          </div>
+          <div class="card-content">
+              <p>{{ product.name }}</p>
+          </div>
+          <div class="card-action">
+              <a href="{{ product.referal }}" target="_blank">Ir al chollo</a>
+              <div>
+                <del>{{ product.oldprice }}€</del><span> Precio viejo</span><span class="badge">Nuevo precio: {{ product.newprice }}€</span>
+              </div>
+          </div>
+        </div>
+    </div>
+   {% else %}
+   <div class="col s12 m4 l3">
+        <div class="card">
+          <div class="card-image">
+              <img src="{{ asset('uploads/photos/') }}{{ product.photo }}">
+              <span class="card-title box">{{ product.discount }}% descuento</span>
+          </div>
+          <div class="card-content">
+              <p>{{ product.name }}</p>
+          </div>
+          <div class="card-action">
+              <a href="{{ product.referal }}" target="_blank">Ir al chollo</a>
+              <div>
+                <del>{{ product.oldprice }}€</del><span> Precio viejo</span><span class="badge">Nuevo precio: {{ product.newprice }}€</span>
+              </div>
+          </div>
+        </div>
+    </div>
+   {% endif %}
+   {% endfor %}
+</div>
+<!-- end show products -->
+<!-- pagination -->
+<div class="row">
+   <div class="center-align">{{ knp_pagination_render(products) }}</div>
+</div>
+<!-- end pagination -->
+{% if is_granted('ROLE_ADMIN') %}
+<!-- Modal Trigger -->
+<div class="fixed-action-btn">
+   <a class="btn-floating btn-large red">
+   <i class="large material-icons fas fa-bars"></i>
+   </a>
+   <ul>
+      <li><a class="btn-floating green waves-effect waves-light btn modal-trigger" href="#modal2"><i class="fas fa-tools"></i></a></li>
+      <li><a class="btn-floating blue waves-effect waves-light btn modal-trigger" href="#modal1"><i class="fas fa-plus"></i></a></li>
+   </ul>
+</div>
+<!-- Modal New Product -->
+<div id="modal1" class="modal">
+   <div class="modal-content">
+      <blockquote>
+         <h5>Add new product</h5>
+      </blockquote>
+      {{ form_start(form) }}
+      <div class='row'>
+         <div class='input-field col s12'>
+            {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
+            {{ form_label(form.name, 'Enter the product name') }}
+         </div>
+      </div>
+      <div class='row'>
+         <label>Descuento</label>
+         <div class='input-field col s12'>
+            {{ form_widget(form.discount, {'attr': {'class': 'validate'}}) }}
+         </div>
+      </div>
+      <div class='row'>
+         <div class='input-field col s12'>
+            {{ form_widget(form.referal, {'attr': {'class': 'validate'}}) }}
+            {{ form_label(form.referal, 'Enter the url') }}
+         </div>
+      </div>
+      <div class='row'>
+         <div class='input-field col s6'>
+            {{ form_widget(form.oldprice, {'attr': {'class': 'validate'}}) }}
+            {{ form_label(form.oldprice, 'Old price') }}
+         </div>
+         <div class='input-field col s6'>
+            {{ form_widget(form.newprice, {'attr': {'class': 'validate'}}) }}
+            {{ form_label(form.newprice, 'New price') }}
+         </div>
+      </div>
+      <div class="file-field input-field">
+         <div class="btn">
+            <span>File</span>
+            {{ form_widget(form.photo) }}
+         </div>
+         <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button class="btn btn-light btn-xl" type="submit">Enviar</button>
+      </div>
+   </div>
+   {{ form_end(form) }}
+</div>
+<!-- Modal Config -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <div class="row">
+         <div class="col s12">
+            <ul class="tabs">
+               <li class="tab col s4"><a class="active" href="#test1">General config</a></li>
+               <li class="tab col s4"><a href="#test2">Telegram Config</a></li>
+               <li class="tab col s4"><a href="#test3">Products Config</a></li>
+            </ul>
+         </div>
+   <!-- Form Config -->
+   <div id="test1" class="col s12">
+            <blockquote>
+               <h5>General configuration</h5>
+            </blockquote>
+            {{ form_start(formconfig) }}
+            <div class='row'>
+               <div class='input-field col s12'>
+                  {{ form_widget(formconfig.siteName, {'attr': {'class': 'validate'}}) }}
+                  {{ form_label(formconfig.siteName, 'Enter your site name') }}
+               </div>
+            </div>
+            <div class="file-field input-field">
+               <div class="btn">
+                  <span>File</span>
+                  {{ form_widget(formconfig.logo) }}
+               </div>
+               <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text"><small>Tamaño de imagen recomendado 600x64</small>
+               </div>
+            </div>
+            <blockquote>
+               <h5>Social network</h5>
+            </blockquote>
+            <div class='row'>
+               <div class='input-field col s6'>
+                  {{ form_widget(formconfig.facebook, {'attr': {'class': 'validate'}}) }}
+                  {{ form_label(formconfig.facebook, 'Enter your facebook url') }}
+               </div>
+               <div class='input-field col s6'>
+                  {{ form_widget(formconfig.twitter, {'attr': {'class': 'validate'}}) }}
+                  {{ form_label(formconfig.twitter, 'Enter your twitter url') }}
+               </div>
+               <div class='input-field col s6'>
+                  {{ form_widget(formconfig.instagram, {'attr': {'class': 'validate'}}) }}
+                  {{ form_label(formconfig.instagram, 'Enter your instagram url') }}
+               </div>
+               <div class='input-field col s6'>
+                  {{ form_widget(formconfig.telegram, {'attr': {'class': 'validate'}}) }}
+                  {{ form_label(formconfig.telegram, 'Enter your telegram url') }}
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-light btn-xl" type="submit">Enviar</button>
+            </div>
+                     {{ form_end(formconfig) }}
+         </div>
+
+   <!-- Form Telegram -->
+   <div id="test2" class="col s12">
+   <blockquote>
+    <h5>Telegram configuration</h5>
+   </blockquote>
+            {{ form_start(formtelegram) }}
+         <div class='row'>
+            <div class='input-field col s12'>
+               {{ form_widget(formtelegram.apiKey, {'attr': {'class': 'validate'}}) }}
+               {{ form_label(formtelegram.apiKey, 'Enter your API KEY') }}
+            </div>
+         </div>
+         <div class='row'>
+            <div class='input-field col s12'>
+               {{ form_widget(formtelegram.chatId, {'attr': {'class': 'validate'}}) }}
+               {{ form_label(formtelegram.chatId, 'Enter your Chat ID') }}
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-light btn-xl" type="submit">Enviar</button>
+         </div>
+               {{ form_end(formtelegram) }}
+      </div>
+   <!-- Form Products -->
+   <div id="test3" class="col s12">
+   <blockquote>
+    <h5>Products configuration</h5>
+   </blockquote>
+   <table class="centered">
+        <thead>
+          <tr>
+              <th>Product Name</th>
+              <th>Finish product</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+          <tr>
+            <td>{{ product.name }}</td>
+            {% if product.finish == false%}
+                  <td><a href="{{ path('finish', {'id': product.id}) }}"><button class="waves-effect waves-light btn"><i class="material-icons left">visibility_off</i>Finalizar</button></a></td>
+                  {% else %}
+                  <td><a href="{{ path('finish', {'id': product.id}) }}"><button class="waves-effect waves-light btn"><i class="material-icons left">visibility</i>Activar</button></a></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+   </div>
+   <!-- End form Products -->
+    </div>
+  </div>
+</div>
+{% endif %}
+<!-- Login Modal -->
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+      <blockquote>
+         <h5>Login</h5>
+      </blockquote>
+      <p class="center-align"><a href="{{ path('connect_google') }}" class="waves-effect waves-light red btn-large"><i class="fab fa-google left"></i>Login with google account</a></p>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Follow us</h5>
+                <div class="social">
+                    <a href="{{ gconfig.twitter }}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>&nbsp;
+                    <a href="{{ gconfig.facebook }}" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>&nbsp;
+                    <a href="{{ gconfig.instagram }}" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>&nbsp;
+		              <a href="{{ gconfig.telegram }}" target="_blank"><i class="fab fa-telegram-plane fa-2x"></i></a>&nbsp;
+                </div>
+            </div>
+            <div class="col l6 s12">
+                <h5 class="white-text">Newsletter</h5>
+            <div class="row">
+               <div class="input-field col s4">
+                  <p class="grey-text text-lighten-4">Avísame de nuevas ofertas</p>
+               </div>
+               <div class="input-field col s4">
+                  <input id="email" type="email" class="validate white-text">
+                  <label class="white-text" for="email">Email</label>
+               </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container center">
+            &copy; {{ 'now'|date('Y') }} {{ gconfig.sitename }} | <a href="https://ofertoapp.com" style="text-decoration: none;color: inherit;" target="_blank"><small>OfertoApp.com OpenSource platform</small></a>
+        </div>
+    </div>
+</footer>
+<!-- Footer -->
+<!-- Loader -->
+<div class="preloader-background">
+   <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue-only">
+         <div class="circle-clipper left">
+            <div class="circle"></div>
+         </div>
+         <div class="gap-patch">
+            <div class="circle"></div>
+         </div>
+         <div class="circle-clipper right">
+            <div class="circle"></div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+

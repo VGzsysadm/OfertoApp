@@ -1,0 +1,80 @@
+/*!
+ * Author: VFoxtTroT)
+ * Copyright 2019 Sysadm.es
+ * MIT License (https://github.com/VGzsysadm)
+ */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.card .card-image .card-title {
+    background-color: black!important;
+    opacity: 0.6;
+    font-weight: bold;
+}
+
+.preloader-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.card img {
+    width: 300px;
+    height: 300px;
+}
+
+.card a,
+.card del,
+.card span {
+    font-weight: bold!important;
+    font-size: 0.9rem;
+}
+
+.badge {
+    font-weight: bold!important;
+    font-size: 1rem!important;
+    background-color: #26a69a;
+    color: white!important;
+}
+
+h5 {
+    text-transform: uppercase;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.finish img {
+    opacity: 0.1!important;
+}
+
+
+/* Toast */
+
+.square-danger {
+    background-color: red;
+}
+
+.square-success {
+    background-color: green;
+}
+
+.icon-primary {
+    color: #EE6E73 !important;
+}
+
+.social i {
+    color: white;
+}

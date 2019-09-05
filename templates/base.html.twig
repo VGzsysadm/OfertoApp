@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <!--Import materialize-->
+        <link rel="stylesheet" href="{{ asset('vendor/css/materialize.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/css/main.css') }}">
+        <!--Import font-awesome-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="{{ asset('vendor/js/main.js') }}"></script>
+        <script src="{{ asset('vendor/js/materialize.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+        </script>
+        {% for message in app.session.flashbag().get('success') %}
+        <script>
+        $(document).ready(function() {
+        M.toast({html: '{{message}}', classes: 'square-success'});
+        });
+        </script>
+        {% endfor %}
+        {% for message in app.session.flashbag().get('danger') %}
+        <script>
+        $(document).ready(function() {
+        M.toast({html: '{{message}}', classes: 'square-danger'});
+        });
+        </script>
+        {% endfor %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97414428-6"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-97414428-6');
+        </script>
+    </body>
+</html>
