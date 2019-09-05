@@ -8,7 +8,7 @@
    <nav>
       <div class="nav-wrapper">
          <a href="#!" class="brand-logo center">
-         <img src="{{ asset('uploads/photos/') }}{{ gconfig.logo }}" width="600" height="64" class="d-inline-block align-top responsive-img" alt="logo">
+         <img src="{{ asset('uploads/photos/') }}{{ gconfig.logo }}" height="64" class="d-inline-block align-top responsive-img" alt="logo">
          </a>
          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
          {% if app.User == null %}
@@ -170,7 +170,7 @@
                   {{ form_widget(formconfig.logo) }}
                </div>
                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text"><small>Tamaño de imagen recomendado 600x64</small>
+                  <input class="file-path validate" type="text"><small>Altura máxima de imagen recomendada 64 pixels</small>
                </div>
             </div>
             <blockquote>
