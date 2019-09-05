@@ -45,6 +45,7 @@ Installation
 * Inside the project folder execute composer install.
 
 .. code:: bash
+
   composer install --no-dev --optimize-autoloader
 
 * Go to the file /config/packages/doctrine.yaml and add the following parameters in the beginning
