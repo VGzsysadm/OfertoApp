@@ -36,6 +36,7 @@ Installation
 
 * Modify the line DATABASE_URL & APP_ENV with your params for connect to the database inside the file .env.
 .. code:: bash
+
   APP_ENV=prod
   DATABASE_URL=mysql://user_ofertoapp:secure_password_here@127.0.0.1:3306/ofertoapp
 
