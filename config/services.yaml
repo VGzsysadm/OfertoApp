@@ -31,3 +31,8 @@ services:
             $targetDirectory: '%kernel.project_dir%/public/uploads/photos'
 
     App\Service\BotTelegram:
+
+    twig.extension.text:
+            class: Twig_Extensions_Extension_Text
+            tags:
+                - { name: twig.extension }

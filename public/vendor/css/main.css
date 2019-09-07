@@ -27,9 +27,19 @@ body {
     bottom: 0;
 }
 
+.main-trap {
+    margin: 0px;
+}
+
+.card-content {
+    padding: 10px!important;
+}
+
 .card img {
-    width: 300px;
-    height: 300px;
+    max-width: 300px;
+    max-height: 300px;
+    margin: auto;
+    width: 50%;
 }
 
 .card a,

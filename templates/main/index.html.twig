@@ -29,7 +29,7 @@
    </nav>
 </div>
 <ul class="sidenav" id="mobile-demo">
-   <li><a href="">Compartir página</a></li>
+   <li><a class="modal-trigger center-align z-depth-3" href="#login-modal">Login</a></li>
 </ul>
 <!-- header end-->
 <!-- show products -->
@@ -39,11 +39,11 @@
     <div class="col s12 m4 l3">
         <div class="card finish">
           <div class="card-image">
-              <img src="{{ asset('uploads/photos/') }}{{ product.photo }}">
+              <img class="responsive-img" src="{{ asset('uploads/photos/') }}{{ product.photo }}">
               <h5 class="card-title box">chollo finalizado</h5>
           </div>
           <div class="card-content">
-              <p>{{ product.name }}</p>
+              <p>{{ product.name| truncate(5, true) }}</p>
           </div>
           <div class="card-action">
               <a href="{{ product.referal }}" target="_blank">Ir al chollo</a>
@@ -54,14 +54,14 @@
         </div>
     </div>
    {% else %}
-   <div class="col s12 m4 l3">
+   <div class="col s12 m4 l4 main-trap">
         <div class="card">
           <div class="card-image">
               <img src="{{ asset('uploads/photos/') }}{{ product.photo }}">
               <span class="card-title box">{{ product.discount }}% descuento</span>
           </div>
           <div class="card-content">
-              <p>{{ product.name }}</p>
+              <p>{{ product.name| truncate(75) }}</p>
           </div>
           <div class="card-action">
               <a href="{{ product.referal }}" target="_blank">Ir al chollo</a>
@@ -260,8 +260,8 @@
       <blockquote>
          <h5>Login</h5>
       </blockquote>
-      <p class="center-align"><a href="{{ path('connect_google') }}" class="waves-effect waves-light red btn-large"><i class="fab fa-google left"></i>Login with google account</a></p>
-      <p class="center-align"><a href="{{ path('connect_facebook') }}" class="waves-effect waves-light blue btn-large"><i class="fab fa-facebook left"></i>Login with Facebook</a></p>
+      <p class="center-align"><a href="{{ path('connect_google') }}" class="waves-effect waves-light red btn-large z-depth-3"><i class="fab fa-google left"></i>Login with Google</a></p>
+      <p class="center-align"><a href="{{ path('connect_facebook') }}" class="waves-effect waves-light blue btn-large z-depth-3"><i class="fab fa-facebook left"></i>Login with Facebook</a></p>
     </div>
 </div>
 <!-- Footer -->
