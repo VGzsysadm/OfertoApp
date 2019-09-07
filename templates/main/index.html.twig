@@ -1,7 +1,7 @@
 
 
 {% extends 'base.html.twig' %}
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}{{ gconfig.sitename }} Your discount platform{% endblock %}
 {% block body %}
 <!-- header start-->
 <div id="main-navigator">
@@ -261,6 +261,7 @@
          <h5>Login</h5>
       </blockquote>
       <p class="center-align"><a href="{{ path('connect_google') }}" class="waves-effect waves-light red btn-large"><i class="fab fa-google left"></i>Login with google account</a></p>
+      <p class="center-align"><a href="{{ path('connect_facebook') }}" class="waves-effect waves-light blue btn-large"><i class="fab fa-facebook left"></i>Login with Facebook</a></p>
     </div>
 </div>
 <!-- Footer -->
